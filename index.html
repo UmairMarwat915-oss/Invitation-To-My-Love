@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Special Invitation ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9ec4, #ffd6e7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 35px 30px;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Progress Dots */
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: 0.3s;
+        }
+        .dot.active {
+            background: #e91e63;
+            transform: scale(1.2);
+        }
+
+        /* Slides */
+        .slide {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 22px;
+            margin: 15px 0;
+        }
+
+        p {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        /* Inputs */
+        .date-time-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .date-time-group input {
+            padding: 14px 18px;
+            border: 2px solid #ffb6c9;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            background: #fff5f8;
+        }
+        .date-time-group input:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.1);
+        }
+
+        /* Buttons */
+        button {
+            padding: 14px 34px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 8px 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-next {
+            background: #e91e63;
+            color: white;
+            margin-top: 20px;
+        }
+        .btn-next:hover {
+            background: #c2185b;
+            transform: scale(1.03);
+        }
+
+        #yesBtn {
+            background: #e91e63;
+            color: white;
+            padding: 14px 40px;
+        }
+        #yesBtn:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background: #888;
+            color: white;
+            position: fixed; /* runs all over the screen */
+            padding: 14px 36px;
+            z-index: 999;
+            transition: left 0.15s ease, top 0.15s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Slide 4 - Thank you */
+        .quote-list {
+            margin: 20px 0;
+            text-align: left;
+            padding: 0 10px;
+        }
+        .quote-list li {
+            list-style: none;
+            font-size: 16px;
+            color: #444;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0e0e5;
+            font-style: italic;
+        }
+        .quote-list li::before {
+            content: "💕 ";
+        }
+        .big-heart {
+            font-size: 50px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Hide the running button on final slide */
+        .hide-no {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .card {
+                padding: 25px 18px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            button {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- Progress Dots -->
+        <div class="dots">
+            <span class="dot active" id="dot1"></span>
+            <span class="dot" id="dot2"></span>
+            <span class="dot" id="dot3"></span>
+            <span class="dot" id="dot4"></span>
+        </div>
+
+        <!-- ========== SLIDE 1: Introduction ========== -->
+        <div id="slide1" class="slide active">
+            <h1>❤️ A Little Surprise ❤️</h1>
+            <p>
+                Hey Beautiful Komal 😘🌹<br /><br />
+                Life has been so much brighter since you came into it. 
+                I have a very special question for you... but first, 
+                let’s make this moment completely yours.
+            </p>
+            <p style="font-size:14px; color:#999;">(Click Next to begin)</p>
+            <button class="btn-next" onclick="goToSlide(2)">Next ➡️</button>
+        </div>
+
+        <!-- ========== SLIDE 2: Choose Date & Time ========== -->
+        <div id="slide2" class="slide">
+            <h2>🗓️ Pick Our Special Day</h2>
+            <p>
+                My love, <span class="highlight">you</span> choose the moment 
+                that feels right for us. I’ll be there, no matter what. 🥰
+            </p>
+            <div class="date-time-group">
+                <label style="text-align:left; font-weight:bold; color:#e91e63;">📅 Date</label>
+                <input type="date" id="datePicker" />
+
+                <label style="text-align:left; font-weight:bold; color:#e91e63;">🕒 Time</label>
+                <input type="time" id="timePicker" />
+            </div>
+            <p style="font-size:14px; color:#888;">
+                (Pick whatever makes you smile, I'll adjust! 😊)
+            </p>
+            <button class="btn-next" onclick="goToSlide(3)">Next ➡️</button>
+        </div>
+
+        <!-- ========== SLIDE 3: The Big Question ========== -->
+        <div id="slide3" class="slide">
+            <h2>Will you go on a date with Your Love Umair Khan? 🥰</h2>
+            <p style="margin-bottom:25px;">
+                You already picked the time and place in your heart. 
+                Now, just say the word... 💖
+            </p>
+
+            <button id="yesBtn" onclick="goToSlide(4)">YES ❤️</button>
+            <button id="noBtn">NO 🙈</button>
+
+            <p style="margin-top:20px; font-size:13px; color:#aaa;">
+                (Hint: The "NO" button loves to run away!)
+            </p>
+        </div>
+
+        <!-- ========== SLIDE 4: Thank You & Quotes ========== -->
+        <div id="slide4" class="slide">
+            <div class="big-heart">❤️</div>
+            <h1>Thank You So Much Meri Gurhiya !🌹</h1>
+            <p style="font-size:19px; color:#e91e63; font-weight:bold;">
+                You just made me the happiest person alive!
+            </p>
+
+            <ul class="quote-list">
+                <li>"Every love story is beautiful, but ours is my favorite."</li>
+                <li>"In you, I've found my forever home."</li>
+                <li>"You are the most beautiful dream I never want to wake up from."</li>
+                <li>"My heart beats only for you, today and always."</li>
+            </ul>
+
+            <p style="margin-top:15px; font-size:15px; color:#888;">
+                I can't wait to see you on <span id="displayDate" class="highlight">our special day</span>! 🥂
+            </p>
+            <p style="margin-top:5px; font-size:14px; color:#aaa;">
+                (Refresh the page to start over and change the date!)
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // ---- Slide Navigation ----
+        function goToSlide(n) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            // Show target slide
+            const target = document.getElementById('slide' + n);
+            if (target) target.classList.add('active');
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === n - 1);
+            });
+
+            // If we reach slide 4 (Thank You), hide the running "NO" button
+            const noBtn = document.getElementById('noBtn');
+            if (n === 4) {
+                noBtn.classList.add('hide-no');
+            } else {
+                noBtn.classList.remove('hide-no');
+            }
+
+            // If we are on slide 2, pre-fill date/time with current values (optional)
+            if (n === 2) {
+                const now = new Date();
+                const dateStr = now.toISOString().split('T')[0];
+                document.getElementById('datePicker').value = dateStr;
+                const hours = String(now.getHours()).padStart(2, '0');
+                const mins = String(now.getMinutes()).padStart(2, '0');
+                document.getElementById('timePicker').value = hours + ':' + mins;
+            }
+
+            // If we go to slide 4, display the chosen date/time
+            if (n === 4) {
+                const dateVal = document.getElementById('datePicker').value;
+                const timeVal = document.getElementById('timePicker').value;
+                let displayText = 'our special day';
+                if (dateVal && timeVal) {
+                    const dateObj = new Date(dateVal + 'T' + timeVal);
+                    displayText = dateObj.toLocaleString('en-US', {
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                } else if (dateVal) {
+                    displayText = new Date(dateVal).toLocaleDateString('en-US', {
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                }
+                document.getElementById('displayDate').textContent = displayText;
+            }
+        }
+
+        // ---- The Famous "NO" Button (Runs Away) ----
+        const noBtn = document.getElementById('noBtn');
+
+        function moveNoButton() {
+            const w = window.innerWidth - 160; // avoid edge
+            const h = window.innerHeight - 80;
+            const x = Math.random() * w;
+            const y = Math.random() * h;
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // Move on mouseover (desktop)
+        noBtn.addEventListener('mouseover', moveNoButton);
+
+        // Move on touchstart (mobile) so it's impossible to tap!
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // prevent accidental click
+            moveNoButton();
+        });
+
+        // Also move it when the window resizes just in case
+        window.addEventListener('resize', function() {
+            if (!noBtn.classList.contains('hide-no')) {
+                // keep it inside new bounds
+                const w = window.innerWidth - 160;
+                const h = window.innerHeight - 80;
+                let left = parseFloat(noBtn.style.left) || 0;
+                let top = parseFloat(noBtn.style.top) || 0;
+                if (left > w) noBtn.style.left = w + 'px';
+                if (top > h) noBtn.style.top = h + 'px';
+            }
+        });
+
+        // ---- Start: make sure NO button is visible on slide 3 ----
+        // Also set initial position for NO button
+        window.addEventListener('load', function() {
+            // set default date/time for slide 2
+            const now = new Date();
+            const dateStr = now.toISOString().split('T')[0];
+            document.getElementById('datePicker').value = dateStr;
+            const hours = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('timePicker').value = hours + ':' + mins;
+
+            // Place NO button initially
+            noBtn.style.left = (window.innerWidth / 2 - 80) + 'px';
+            noBtn.style.top = (window.innerHeight / 2 + 50) + 'px';
+        });
+
+        console.log("💖 She's going to say YES!");
+    </script>
+
+</body>
+  </html>
